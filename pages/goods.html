@@ -49,33 +49,107 @@
       <main class="main">
         <section class="products">
           <h2 class="products__title">Наши товары</h2>
+
           <div class="products__grid">
+            <!-- Карточка 1 - Базовая -->
             <article class="product-card">
-              <img
-                class="product-card__image"
-                src="../images/goods1.png"
-                alt="Сумка Birkin"
-              />
-              <h3 class="product-card__title">Сумка Birkin</h3>
-              <p class="product-card__price">50000 $</p>
+              <div class="product-card__badges">
+                <span class="product-card__badge product-card__badge--new"
+                  >Новинка</span
+                >
+              </div>
+              <div class="product-card__image-container">
+                <img
+                  class="product-card__image"
+                  src="../images/goods1.png"
+                  alt="Сумка Birkin"
+                />
+              </div>
+              <div class="product-card__content">
+                <h3 class="product-card__title">Сумка Birkin</h3>
+                <p class="product-card__description">
+                  Эксклюзивная кожаная сумка ручной работы
+                </p>
+                <div class="product-card__price">
+                  <span class="product-card__current-price">50000 $</span>
+                </div>
+              </div>
+              <div class="product-card__actions">
+                <button
+                  class="button button--primary product-card__add-to-cart"
+                >
+                  В корзину
+                </button>
+              </div>
             </article>
-            <article class="product-card">
-              <img
-                class="product-card__image"
-                src="../images/goods2.png"
-                alt="Туфли Saint Loran"
-              />
-              <h3 class="product-card__title">Туфли Saint Loran</h3>
-              <p class="product-card__price">45000 руб</p>
+
+            <!-- Карточка 2 - Со скидкой -->
+            <article class="product-card product-card--discount">
+              <div class="product-card__badges">
+                <span class="product-card__badge product-card__badge--discount"
+                  >-30%</span
+                >
+                <span
+                  class="product-card__badge product-card__badge--bestseller"
+                  >Хит</span
+                >
+              </div>
+              <div class="product-card__image-container">
+                <img
+                  class="product-card__image"
+                  src="../images/goods2.png"
+                  alt="Туфли Saint Loran"
+                />
+              </div>
+              <div class="product-card__content">
+                <h3 class="product-card__title">Туфли Saint Loran</h3>
+                <p class="product-card__description">
+                  Элегантные кожаные туфли премиум-класса
+                </p>
+                <div class="product-card__price">
+                  <span class="product-card__current-price">31500 руб</span>
+                  <span class="product-card__old-price">45000 руб</span>
+                </div>
+              </div>
+              <div class="product-card__actions">
+                <button
+                  class="button button--primary product-card__add-to-cart"
+                >
+                  В корзину
+                </button>
+              </div>
             </article>
-            <article class="product-card">
-              <img
-                class="product-card__image"
-                src="../images/goods3.png"
-                alt="AirPods Max"
-              />
-              <h3 class="product-card__title">AirPods Max</h3>
-              <p class="product-card__price">60000 руб</p>
+
+            <article class="product-card product-card--selected">
+              <div class="product-card__badges">
+                <span
+                  class="product-card__badge product-card__badge--bestseller"
+                  >Хит</span
+                >
+              </div>
+              <div class="product-card__image-container">
+                <img
+                  class="product-card__image"
+                  src="../images/goods3.png"
+                  alt="AirPods Max"
+                />
+              </div>
+              <div class="product-card__content">
+                <h3 class="product-card__title">AirPods Max</h3>
+                <p class="product-card__description">
+                  Беспроводные наушники премиум-класса
+                </p>
+                <div class="product-card__price">
+                  <span class="product-card__current-price">60000 руб</span>
+                </div>
+              </div>
+              <div class="product-card__actions">
+                <button
+                  class="button button--primary product-card__add-to-cart"
+                >
+                  В корзину
+                </button>
+              </div>
             </article>
           </div>
         </section>
@@ -123,9 +197,85 @@
         }
       }
 
+      // Функционал карточек товаров
+      class ProductCards {
+        constructor() {
+          this.cards = document.querySelectorAll(".product-card");
+          this.wishlistButtons = document.querySelectorAll(
+            ".product-card__wishlist"
+          );
+          this.addToCartButtons = document.querySelectorAll(
+            ".product-card__add-to-cart"
+          );
+
+          this.init();
+        }
+
+        init() {
+          this.addEventListeners();
+        }
+
+        addEventListeners() {
+          // Обработчики для добавления в корзину
+          this.addToCartButtons.forEach((button) => {
+            if (!button.disabled) {
+              button.addEventListener("click", (e) => {
+                e.stopPropagation();
+                this.addToCart(button);
+              });
+            }
+          });
+
+          // Обработчики для клика по карточке
+          this.cards.forEach((card) => {
+            card.addEventListener("click", (e) => {
+              if (
+                !e.target.closest(".product-card__wishlist") &&
+                !e.target.closest(".product-card__add-to-cart") &&
+                !e.target.closest(".product-card__details")
+              ) {
+                this.showProductDetails(card);
+              }
+            });
+          });
+        }
+
+        toggleWishlist(button) {
+          button.classList.toggle("product-card__wishlist--active");
+          const isActive = button.classList.contains(
+            "product-card__wishlist--active"
+          );
+          button.setAttribute(
+            "aria-label",
+            isActive ? "Удалить из избранного" : "Добавить в избранное"
+          );
+        }
+
+        addToCart(button) {
+          const card = button.closest(".product-card");
+          const wasAdded = card.classList.contains("product-card--selected");
+
+          if (!wasAdded) {
+            card.classList.add("product-card--selected");
+            button.textContent = "✓ В корзине";
+            button.classList.add("product-card__add-to-cart--added");
+          } else {
+            card.classList.remove("product-card--selected");
+            button.textContent = "В корзину";
+            button.classList.remove("product-card__add-to-cart--added");
+          }
+        }
+
+        showProductDetails(card) {
+          const title = card.querySelector(".product-card__title").textContent;
+          alert(`Подробная информация о товаре: ${title}`);
+        }
+      }
+
       // Инициализация при загрузке страницы
       document.addEventListener("DOMContentLoaded", () => {
         new ThemeSwitcher();
+        new ProductCards();
       });
     </script>
   </body>

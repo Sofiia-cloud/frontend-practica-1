@@ -7,63 +7,65 @@
     <link rel="stylesheet" href="../style/styles.css" />
   </head>
   <body>
-    <div class="page-container">
+    <div class="page">
       <header class="header">
-        <h1>Slay network</h1>
+        <h1 class="header__title">Slay network</h1>
       </header>
       <nav class="nav">
-        <ul class="nav-list">
-          <li class="nav-item">
-            <a class="nav-link" href="../index.html">Главная</a>
+        <ul class="nav__list">
+          <li class="nav__item">
+            <a class="nav__link" href="../index.html">Главная</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="news.html">Новости</a>
+          <li class="nav__item">
+            <a class="nav__link" href="news.html">Новости</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="practices.html">Практики</a>
+          <li class="nav__item">
+            <a class="nav__link" href="practices.html">Практики</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="goods.html">Товары</a>
+          <li class="nav__item nav__item--active">
+            <a class="nav__link" href="goods.html">Товары</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="contacts.html">Контакты</a>
+          <li class="nav__item">
+            <a class="nav__link" href="contacts.html">Контакты</a>
           </li>
         </ul>
       </nav>
-      <main class="content">
-        <h2 class="section-title">Наши товары</h2>
-        <section class="products-grid">
-          <article class="product-card">
-            <img
-              class="product-image"
-              src="../images/goods1.png"
-              alt="Фото товара 1"
-            />
-            <h3 class="product-name">Сумка Birkin</h3>
-            <p class="product-price">50000 $</p>
-          </article>
-          <article class="product-card">
-            <img
-              class="product-image"
-              src="../images/goods2.png"
-              alt="Фото товара 2"
-            />
-            <h3 class="product-name">Туфли Saint Loran</h3>
-            <p class="product-price">45000 руб</p>
-          </article>
-          <article class="product-card">
-            <img
-              class="product-image"
-              src="../images/goods3.png"
-              alt="Фото товара 3"
-            />
-            <h3 class="product-name">AirPods Max</h3>
-            <p class="product-price">60000 руб</p>
-          </article>
+      <main class="main">
+        <section class="products">
+          <h2 class="products__title">Наши товары</h2>
+          <div class="products__grid">
+            <article class="product-card">
+              <img
+                class="product-card__image"
+                src="../images/goods1.png"
+                alt="Сумка Birkin"
+              />
+              <h3 class="product-card__title">Сумка Birkin</h3>
+              <p class="product-card__price">50000 $</p>
+            </article>
+            <article class="product-card">
+              <img
+                class="product-card__image"
+                src="../images/goods2.png"
+                alt="Туфли Saint Loran"
+              />
+              <h3 class="product-card__title">Туфли Saint Loran</h3>
+              <p class="product-card__price">45000 руб</p>
+            </article>
+            <article class="product-card">
+              <img
+                class="product-card__image"
+                src="../images/goods3.png"
+                alt="AirPods Max"
+              />
+              <h3 class="product-card__title">AirPods Max</h3>
+              <p class="product-card__price">60000 руб</p>
+            </article>
+          </div>
         </section>
       </main>
       <footer class="footer">
-        <p>Все права защищены</p>
+        <p class="footer__text">Все права защищены</p>
       </footer>
     </div>
   </body>

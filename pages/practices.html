@@ -3,13 +3,29 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Практические работы</title>
+    <title>Практики</title>
     <link rel="stylesheet" href="../style/styles.css" />
   </head>
   <body>
     <div class="page">
       <header class="header">
-        <h1 class="header__title">Slay network</h1>
+        <div class="header__top">
+          <h1 class="header__title">Slay network</h1>
+          <div class="theme-switcher">
+            <button
+              class="theme-switcher__button"
+              id="themeToggle"
+              aria-label="Переключить тему"
+            >
+              <span class="theme-switcher__icon theme-switcher__icon--light"
+                >🤍</span
+              >
+              <span class="theme-switcher__icon theme-switcher__icon--dark"
+                >🖤</span
+              >
+            </button>
+          </div>
+        </div>
       </header>
       <nav class="nav">
         <ul class="nav__list">
@@ -55,5 +71,49 @@
         <p class="footer__text">Все права защищены</p>
       </footer>
     </div>
+
+    <script>
+      // Функционал переключения темы
+      class ThemeSwitcher {
+        constructor() {
+          this.themeToggle = document.getElementById("themeToggle");
+          this.currentTheme = localStorage.getItem("theme") || "light";
+
+          this.init();
+        }
+
+        init() {
+          this.setTheme(this.currentTheme);
+          this.themeToggle.addEventListener("click", () => this.toggleTheme());
+        }
+
+        toggleTheme() {
+          this.currentTheme = this.currentTheme === "light" ? "dark" : "light";
+          this.setTheme(this.currentTheme);
+        }
+
+        setTheme(theme) {
+          document.documentElement.setAttribute("data-theme", theme);
+          localStorage.setItem("theme", theme);
+          this.updateButton(theme);
+        }
+
+        updateButton(theme) {
+          const button = this.themeToggle;
+          if (theme === "dark") {
+            button.setAttribute("aria-label", "Включить светлую тему");
+            button.classList.add("theme-switcher__button--dark");
+          } else {
+            button.setAttribute("aria-label", "Включить темную тему");
+            button.classList.remove("theme-switcher__button--dark");
+          }
+        }
+      }
+
+      // Инициализация при загрузке страницы
+      document.addEventListener("DOMContentLoaded", () => {
+        new ThemeSwitcher();
+      });
+    </script>
   </body>
 </html>

@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Товары</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+    />
+    <link rel="stylesheet" href="../style/styles.css" />
+    <style>
+      .theme-switcher__button {
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 1.5rem;
+        transition: transform 0.3s ease;
+      }
+
+      .theme-switcher__button:hover {
+        transform: scale(1.1);
+      }
+
+      .product-card {
+        transition: transform 0.2s;
+        height: 100%;
+      }
+
+      .product-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .product-card__badge {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        z-index: 2;
+      }
+
+      .product-card--selected {
+        border: 2px solid #198754 !important;
+      }
+
+      .product-card__image {
+        height: 200px;
+        object-fit: cover;
+      }
+    </style>
+  </head>
+  <body class="bg-light">
+    <div class="container-fluid p-0">
+      <!-- Header -->
+      <header class="bg-white shadow-sm py-3">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col">
+              <h1 class="h3 mb-1 text-primary">Slay network</h1>
+            </div>
+            <div class="col-auto">
+              <div class="theme-switcher">
+                <button
+                  class="theme-switcher__button"
+                  id="themeToggle"
+                  aria-label="Переключить тему"
+                >
+                  <span class="theme-switcher__icon theme-switcher__icon--light"
+                    >🤍</span
+                  >
+                  <span class="theme-switcher__icon theme-switcher__icon--dark"
+                    >🖤</span
+                  >
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Navigation -->
+      <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="../index.html">
+                  <i class="bi bi-house me-1"></i>Главная
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="news.html">
+                  <i class="bi bi-newspaper me-1"></i>Новости
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="practices.html">
+                  <i class="bi bi-code-slash me-1"></i>Практики
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="goods.html">
+                  <i class="bi bi-cart me-1"></i>Товары
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="contacts.html">
+                  <i class="bi bi-telephone me-1"></i>Контакты
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Main Content -->
+      <main class="container my-4">
+        <section class="products">
+          <h2 class="products__title text-center mb-4">Наши товары</h2>
+
+          <div class="row g-4">
+            <!-- Карточка 1 - Базовая -->
+            <div class="col-md-4">
+              <article class="card h-100 product-card shadow-sm">
+                <div class="position-relative">
+                  <span class="badge bg-success product-card__badge"
+                    >Новинка</span
+                  >
+                  <img
+                    src="../images/goods1.png"
+                    class="card-img-top product-card__image"
+                    alt="Сумка Birkin"
+                  />
+                </div>
+                <div class="card-body d-flex flex-column">
+                  <h3 class="card-title h5">Сумка Birkin</h3>
+                  <p class="card-text text-muted flex-grow-1">
+                    Эксклюзивная кожаная сумка ручной работы
+                  </p>
+                  <div class="mb-3">
+                    <span class="h4 text-primary">50000 $</span>
+                  </div>
+                  <button class="btn btn-primary product-card__add-to-cart">
+                    В корзину
+                  </button>
+                </div>
+              </article>
+            </div>
+
+            <!-- Карточка 2 - Со скидкой -->
+            <div class="col-md-4">
+              <article class="card h-100 product-card shadow-sm border-warning">
+                <div class="position-relative">
+                  <span class="badge bg-danger product-card__badge">-30%</span>
+                  <span
+                    class="badge bg-primary product-card__badge"
+                    style="left: auto; right: 10px"
+                    >Хит</span
+                  >
+                  <img
+                    src="../images/goods2.png"
+                    class="card-img-top product-card__image"
+                    alt="Туфли Saint Loran"
+                  />
+                </div>
+                <div class="card-body d-flex flex-column">
+                  <h3 class="card-title h5">Туфли Saint Loran</h3>
+                  <p class="card-text text-muted flex-grow-1">
+                    Элегантные кожаные туфли премиум-класса
+                  </p>
+                  <div class="mb-3">
+                    <span class="h4 text-danger">31500 руб</span>
+                    <span class="text-muted text-decoration-line-through ms-2"
+                      >45000 руб</span
+                    >
+                  </div>
+                  <button class="btn btn-primary product-card__add-to-cart">
+                    В корзину
+                  </button>
+                </div>
+              </article>
+            </div>
+
+            <!-- Карточка 3 - Хит продаж -->
+            <div class="col-md-4">
+              <article
+                class="card h-100 product-card shadow-sm product-card--selected"
+              >
+                <div class="position-relative">
+                  <span class="badge bg-primary product-card__badge">Хит</span>
+                  <img
+                    src="../images/goods3.png"
+                    class="card-img-top product-card__image"
+                    alt="AirPods Max"
+                  />
+                </div>
+                <div class="card-body d-flex flex-column">
+                  <h3 class="card-title h5">AirPods Max</h3>
+                  <p class="card-text text-muted flex-grow-1">
+                    Беспроводные наушники премиум-класса
+                  </p>
+                  <div class="mb-3">
+                    <span class="h4 text-primary">60000 руб</span>
+                  </div>
+                  <button class="btn btn-primary product-card__add-to-cart">
+                    В корзину
+                  </button>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <!-- Footer -->
+      <footer class="bg-dark text-white py-4 mt-5">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-md-12 text-center">
+              <p class="mb-0">Все права защищены</p>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      // Функционал переключения темы
+      class ThemeSwitcher {
+        constructor() {
+          this.themeToggle = document.getElementById("themeToggle");
+          this.currentTheme = localStorage.getItem("theme") || "light";
+
+          this.init();
+        }
+
+        init() {
+          this.setTheme(this.currentTheme);
+          this.themeToggle.addEventListener("click", () => this.toggleTheme());
+        }
+
+        toggleTheme() {
+          this.currentTheme = this.currentTheme === "light" ? "dark" : "light";
+          this.setTheme(this.currentTheme);
+        }
+
+        setTheme(theme) {
+          document.documentElement.setAttribute("data-theme", theme);
+          localStorage.setItem("theme", theme);
+          this.updateButton(theme);
+        }
+
+        updateButton(theme) {
+          const button = this.themeToggle;
+          if (theme === "dark") {
+            button.setAttribute("aria-label", "Включить светлую тему");
+            button.classList.add("theme-switcher__button--dark");
+          } else {
+            button.setAttribute("aria-label", "Включить темную тему");
+            button.classList.remove("theme-switcher__button--dark");
+          }
+        }
+      }
+
+      // Функционал карточек товаров
+      class ProductCards {
+        constructor() {
+          this.addToCartButtons = document.querySelectorAll(
+            ".product-card__add-to-cart"
+          );
+          this.init();
+        }
+
+        init() {
+          this.addEventListeners();
+        }
+
+        addEventListeners() {
+          this.addToCartButtons.forEach((button) => {
+            button.addEventListener("click", (e) => {
+              e.stopPropagation();
+              this.addToCart(button);
+            });
+          });
+
+          // Обработчики для клика по карточке
+          document.querySelectorAll(".product-card").forEach((card) => {
+            card.addEventListener("click", (e) => {
+              if (!e.target.closest(".product-card__add-to-cart")) {
+                this.showProductDetails(card);
+              }
+            });
+          });
+        }
+
+        addToCart(button) {
+          const card = button.closest(".product-card");
+          const wasAdded = card.classList.contains("product-card--selected");
+
+          if (!wasAdded) {
+            card.classList.add("product-card--selected");
+            button.textContent = "✓ В корзине";
+            button.classList.remove("btn-primary");
+            button.classList.add("btn-success");
+          } else {
+            card.classList.remove("product-card--selected");
+            button.textContent = "В корзину";
+            button.classList.remove("btn-success");
+            button.classList.add("btn-primary");
+          }
+        }
+
+        showProductDetails(card) {
+          const title = card.querySelector(".card-title").textContent;
+          alert(`Подробная информация о товаре: ${title}`);
+        }
+      }
+
+      // Инициализация при загрузке страницы
+      document.addEventListener("DOMContentLoaded", () => {
+        new ThemeSwitcher();
+        new ProductCards();
+      });
+    </script>
+  </body>
+</html>
